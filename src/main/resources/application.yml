@@ -6,7 +6,8 @@ server:
   servlet:
     context-path: /healer
     session:
-      timeout: 36000
+      timeout: 30m
+
 spring:
   freemarker:
     allow-request-override: false
@@ -21,4 +22,12 @@ spring:
     template-loader-path: classpath:/templates/
     request-context-attribute:
     prefix:
-
+  datasource:
+    url: jdbc:mysql://120.77.171.82:3306/healer?characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+    favicon:
+      enabled: false

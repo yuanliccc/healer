@@ -1,0 +1,15 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+/*下面是各自页面的样式，尽量使用公共样式；特定页面样式，请为body添加一个id，再通过Id 书写样式：
+    例子：index.html, body id: 'index', 书写名为 'aa' 的 class：
+    #index .aa {
+        color: red;
+    }
+*/
