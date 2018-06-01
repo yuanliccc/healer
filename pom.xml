@@ -8,7 +8,7 @@
   <name>healer Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
-<scm>
+    <scm>
 		<url>https://github.com/yuanliccc/healer</url>
 		<connection>scm:git:https://git@github.com/yuanliccc/healer.git</connection>
 	</scm>
