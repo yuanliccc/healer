@@ -26,7 +26,14 @@
 		<pmd.version>3.8</pmd.version>
 		<changelog.version>2.3</changelog.version>
 		<cobertura.version>2.7</cobertura.version>
+        <swagger.version>2.8.0</swagger.version>
 	</properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.2.RELEASE</version>
+    </parent>
 	
 	<developers>
 		<developer>
@@ -37,18 +44,7 @@
 	</developers>
 
 	<reporting>
-		<outputDirectory>${project.basedir}/target/report-doc</outputDirectory>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${javadoc.version}</version>
-				
-				<configuration>
-					<additionalparam>-Xdoclint:none</additionalparam>
-				</configuration>
-			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -80,29 +76,17 @@
 			</plugin>
 		</plugins>
 	</reporting>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repository.spring.release</id>
+            <name>Spring GA Repository</name>
+            <url>https://repo.spring.io/plugins-release/</url>
+        </pluginRepository>
+    </pluginRepositories>
 	
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${compiler.version}</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>${site.version}</version>
-				<configuration>
-					<locales>zh_CN</locales>
-				</configuration>
-			</plugin>
-
 			<plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
@@ -115,29 +99,63 @@
                     <check />
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
 		</plugins>
-		
-		<resources>
-			<resource>
-				<directory>${project.basedir}/src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		
-		<testResources>
-			<testResource>
-				<directory>${project.basedir}/src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
+
+        <finalName>healer</finalName>
 	</build>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-freemarker</artifactId>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-test</artifactId>
+          <scope>test</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>com.alibaba</groupId>
+          <artifactId>fastjson</artifactId>
+          <version>1.2.9</version>
+      </dependency>
+
+     <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+        <scope>test</scope>
+     </dependency>
+
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger2</artifactId>
+          <version>${swagger.version}</version>
+      </dependency>
+
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger-ui</artifactId>
+          <version>${swagger.version}</version>
+      </dependency>
   </dependencies>
 </project>
